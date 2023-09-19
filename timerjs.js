@@ -16,6 +16,7 @@
          * @param {string} params.defaultFormat - The default format for the timer display.
          */
         constructor(params) {
+            this.providedTimeInSeconds = params.timeInSeconds;
             this.timeInSeconds = params.timeInSeconds;
             this.onStart = params.onStart;
             this.onStop = params.onStop;
@@ -78,7 +79,8 @@
          * Reset the timer.
          */
         reset() {
-            this.timeInSeconds = this.defaultTimeInSeconds;
+            clearInterval(this.intervalId);
+            this.timeInSeconds = this.providedTimeInSeconds;
             this.updateDisplay();
             this.onReset();
         }
